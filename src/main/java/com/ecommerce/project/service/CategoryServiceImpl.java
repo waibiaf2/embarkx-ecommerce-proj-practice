@@ -1,10 +1,12 @@
 package com.ecommerce.project.service;
 
 import com.ecommerce.project.model.Category;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
     List<Category> categories = new ArrayList<>();
     Long nextId = 1L;
@@ -15,10 +17,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public String createCategory(Category category) {
+    public Category getCategory(Long categoryId) {
+        return categories.stream()
+            .filter(c -> c.getCategoryId().equals(categoryId))
+            .findFirst().orElseThrow();
+    }
+
+    @Override
+    public Category createCategory(Category category) {
         category.setCategoryId(nextId++);
         categories.add(category);
-        return "Category created successfully";
+        return category;
     }
 
     @Override
@@ -30,5 +39,12 @@ public class CategoryServiceImpl implements CategoryService {
         categories.remove(category);
 
         return "Category deleted successfully";
+    }
+
+    @Override
+    public Category updateCategory(Long categoryId, Category category) {
+        Category categoryToUpdate = getCategory(categoryId);
+        categoryToUpdate.setCategoryName(category.getCategoryName());
+        return categoryToUpdate;
     }
 }
