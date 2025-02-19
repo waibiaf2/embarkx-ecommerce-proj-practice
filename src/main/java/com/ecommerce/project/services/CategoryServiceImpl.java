@@ -1,6 +1,6 @@
-package com.ecommerce.project.service;
+package com.ecommerce.project.services;
 
-import com.ecommerce.project.model.Category;
+import com.ecommerce.project.models.Category;
 import com.ecommerce.project.repositories.CategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
