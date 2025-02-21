@@ -1,0 +1,27 @@
+### Get All Categories
+GET {{host}}/public/categories
+
+### Get A Category
+@categoryId = 1
+GET {{host}}/public/categories/{{categoryId}}
+
+### Add A Category
+POST {{host}}/admin/categories
+Content-Type: application/json
+
+{
+  "categoryName": "Education"
+}
+
+### Update A Category
+@updateCategoryId = 1
+PUT {{host}}/admin/categories/{{updateCategoryId}}
+Content-Type: application/json
+
+{
+  "categoryName": "Education and Sports"
+}
+
+### Delete A Category
+@deleteCategoryId = 1
+DELETE {{host}}/admin/categories/{{deleteCategoryId}}
