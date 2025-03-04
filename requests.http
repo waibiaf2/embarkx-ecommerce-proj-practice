@@ -10,7 +10,7 @@ POST {{host}}/admin/categories
 Content-Type: application/json
 
 {
-  "categoryName": "Leisure and Hospitality"
+  "categoryName": "Toys and Games"
 }
 
 ### Update A Category
@@ -25,3 +25,19 @@ Content-Type: application/json
 ### Delete A Category
 @deleteCategoryId = 1
 DELETE {{host}}/admin/categories/{{deleteCategoryId}}
+
+##************************************ Product ************************************
+##********************************************************************************
+
+### Add A Product
+POST {{host}}/admin/1/products
+Content-Type: application/json
+
+{
+  "productName": "Legal Blocks",
+  "description": "Beautifully crafted legal blocks for kids",
+  "quantity": 10,
+  "price": 1000.00,
+  "discount": 15.00
+}
+
