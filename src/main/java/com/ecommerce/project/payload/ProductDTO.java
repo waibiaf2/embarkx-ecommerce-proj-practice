@@ -1,4 +1,20 @@
 package com.ecommerce.project.payload;
 
+import com.ecommerce.project.models.Category;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductDTO {
+    private Long productId;
+    private String productName;
+    private String description;
+    private Double discount;
+    private Double price;
+    private Double specialPrice;
+    private Integer quantity;
+    private String image;
 }
