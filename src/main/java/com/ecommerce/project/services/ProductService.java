@@ -7,7 +7,7 @@ import com.ecommerce.project.payload.ProductResponse;
 import java.util.List;
 
 public interface ProductService {
-    List<ProductResponse> getAllProducts(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
+    ProductResponse getAllProducts(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
     ProductResponse getProduct(Long productId);
     ProductDTO createProduct(Long categoryId, Product product);
 }
