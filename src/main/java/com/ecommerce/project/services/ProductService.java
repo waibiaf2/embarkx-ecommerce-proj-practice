@@ -10,4 +10,5 @@ public interface ProductService {
     ProductResponse getAllProducts(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
     ProductResponse getProduct(Long productId);
     ProductDTO createProduct(Long categoryId, Product product);
+    ProductResponse getProductsByCategory(Long categoryId);
 }

@@ -10,7 +10,7 @@ POST {{host}}/admin/categories
 Content-Type: application/json
 
 {
-  "categoryName": "Men's Clothing"
+  "categoryName": "Men's Apparel"
 }
 
 ### Update A Category
@@ -34,7 +34,7 @@ POST {{host}}/admin/1/products
 Content-Type: application/json
 
 {
-  "productName": "Legal Blocks",
+  "productName": "Formular One Racing Car",
   "description": "Beatuifully crafted legal blocks for kids",
   "quantity": 10,
   "price": 1000.00,
@@ -45,3 +45,6 @@ Content-Type: application/json
 ### Get All Products
 GET {{host}}/public/products
 
+
+### Get All Products By Category
+GET {{host}}/public/2/products

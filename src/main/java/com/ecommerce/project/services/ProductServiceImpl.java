@@ -48,6 +48,21 @@ public class ProductServiceImpl implements ProductService {
     }
     
     @Override
+    public ProductResponse getProductsByCategory(Long categoryId) {
+        Category category = categoryRepository.findById(categoryId)
+            .orElseThrow(() -> new ResourceNotFoundException("Category", "Id", categoryId));
+        
+        List<Product> products = productRepository.findByCategoryOrderByPrice(category);
+        List<ProductDTO> productDTOs = products.stream()
+            .map(product -> modelMapper.map(product, ProductDTO.class)).collect(Collectors.toList());
+        
+        ProductResponse productResponse = new ProductResponse();
+        productResponse.setContent(productDTOs);
+        
+        return productResponse;
+    }
+    
+    @Override
     public ProductResponse getAllProducts(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
         Sort sortAndOrderBy = sortOrder.equalsIgnoreCase("asc") ?
             Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
