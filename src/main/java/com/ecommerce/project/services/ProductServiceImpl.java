@@ -12,8 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -60,6 +58,34 @@ public class ProductServiceImpl implements ProductService {
         productResponse.setContent(productDTOs);
         
         return productResponse;
+    }
+    
+    @Override
+    public ProductResponse getProductsByKeyWord(String keyword) {
+        List<Product> products = productRepository.findByProductNameLikeIgnoreCase("%" + keyword + "%");
+        List<ProductDTO> productDTOs = products.stream()
+            .map(product -> modelMapper.map(product, ProductDTO.class)).collect(Collectors.toList());
+        
+        ProductResponse productResponse = new ProductResponse();
+        productResponse.setContent(productDTOs);
+        
+        return productResponse;
+    }
+    
+    @Override
+    public ProductDTO updateProduct(Long productId, Product product) {
+        Product existingProduct = productRepository.findById(productId)
+            .orElseThrow(() -> new ResourceNotFoundException("Product", "Id", productId));
+        
+        existingProduct.setProductName(product.getProductName());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setDiscount(product.getDiscount());
+        existingProduct.setQuantity(product.getQuantity());
+        existingProduct.setDescription(product.getDescription());
+        
+        productRepository.save(existingProduct);
+        
+        return modelMapper.map(existingProduct, ProductDTO.class);
     }
     
     @Override

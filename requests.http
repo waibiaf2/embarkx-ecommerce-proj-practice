@@ -10,7 +10,7 @@ POST {{host}}/admin/categories
 Content-Type: application/json
 
 {
-  "categoryName": "Men's Apparel"
+  "categoryName": "Toys and Games"
 }
 
 ### Update A Category
@@ -34,8 +34,8 @@ POST {{host}}/admin/1/products
 Content-Type: application/json
 
 {
-  "productName": "Formular One Racing Car",
-  "description": "Beatuifully crafted legal blocks for kids",
+  "productName": "Legal Blocks",
+  "description": "Conformable and easy to wear",
   "quantity": 10,
   "price": 1000.00,
   "discount": 15.00
@@ -48,3 +48,16 @@ GET {{host}}/public/products
 
 ### Get All Products By Category
 GET {{host}}/public/2/products
+
+### Get All Products By Keyword
+GET {{host}}/public/products/keyword/legal
+
+### Update a Products
+PUT {{host}}/admin/products/1
+Content-Type: application/json
+
+{
+  "productName": "Custom Legal Blocks",
+  "description": "Creative legal pieces the boot innovation in kids",
+  "quantity": 45
+}
