@@ -7,8 +7,8 @@ import com.ecommerce.project.payload.ProductResponse;
 public interface ProductService {
     ProductResponse getAllProducts(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
     ProductResponse getProduct(Long productId);
-    ProductDTO createProduct(Long categoryId, Product product);
+    ProductDTO createProduct(Long categoryId, ProductDTO productDTO);
     ProductResponse getProductsByCategory(Long categoryId);
     ProductResponse getProductsByKeyWord(String keyword);
-    ProductDTO updateProduct(Long productId, Product product);
+    ProductDTO updateProduct(Long productId, ProductDTO productDTO);
 }
