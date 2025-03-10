@@ -40,7 +40,7 @@ public class ProductController {
         return new ResponseEntity<>(productResponse, HttpStatus.OK);
     }
     
-    @GetMapping("/public/{categoryId}/products")
+    @GetMapping("/public/category/{categoryId}/products")
     public ResponseEntity<ProductResponse> getAllProductsByCategory(
         @PathVariable Long categoryId,
         @RequestParam(name = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) int pageNumber,
@@ -48,7 +48,7 @@ public class ProductController {
         @RequestParam(name = "sortBy", defaultValue = AppConstants.SORT_PRODUCT_BY, required = false) String sortBy,
         @RequestParam(name = "sortOrder", defaultValue = AppConstants.ORDER_DIRECTION, required = false) String sortOrder
     ) {
-        ProductResponse productResponse = productService.getProductsByCategory(categoryId);
+        ProductResponse productResponse = productService.getProductsByCategory(categoryId, pageNumber, pageSize, sortBy, sortOrder);
         return new ResponseEntity<>(productResponse, HttpStatus.OK);
     }
     
