@@ -9,6 +9,6 @@ public interface ProductService {
     ProductResponse getProduct(Long productId);
     ProductDTO createProduct(Long categoryId, ProductDTO productDTO);
     ProductResponse getProductsByCategory(Long categoryId, Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
-    ProductResponse getProductsByKeyWord(String keyword);
+    ProductResponse getProductsByKeyWord(String keyword, Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
     ProductDTO updateProduct(Long productId, ProductDTO productDTO);
 }

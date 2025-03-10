@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -24,4 +25,7 @@ public class Category {
     @NotBlank(message = "Category name cannot be blank, its required!")
     @Size(min = 5, message = "A minimum of 5 characters is required for categoryName be valid.")
     private String categoryName;
+    
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private Set<Product> products = new HashSet<>();
 }

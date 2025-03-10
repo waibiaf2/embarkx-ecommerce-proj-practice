@@ -10,7 +10,7 @@ POST {{host}}/admin/categories
 Content-Type: application/json
 
 {
-  "categoryName": "Toys and Games"
+  "categoryName": "Men's Fashion"
 }
 
 ### Update A Category
@@ -30,12 +30,12 @@ DELETE {{host}}/admin/categories/{{deleteCategoryId}}
 ##********************************************************************************
 
 ### Add A Product
-POST {{host}}/admin/1/products
+POST {{host}}/admin/category/1/products
 Content-Type: application/json
 
 {
-  "productName": "Legal Blocks",
-  "description": "Conformable and easy to wear",
+  "productName": "N",
+  "description": "Nice and Comfy Leather Jacket",
   "quantity": 10,
   "price": 1000.00,
   "discount": 15.00
@@ -50,7 +50,7 @@ GET {{host}}/public/products
 GET {{host}}/public/2/products
 
 ### Get All Products By Keyword
-GET {{host}}/public/products/keyword/legal
+GET {{host}}/public/products/keyword/doll
 
 ### Update a Products
 PUT {{host}}/admin/products/1
