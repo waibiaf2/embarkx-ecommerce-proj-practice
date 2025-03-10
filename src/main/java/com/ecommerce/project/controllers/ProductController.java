@@ -20,7 +20,7 @@ public class ProductController {
         this.productService = productService;
     }
     
-    @PostMapping("/admin/{categoryId}/products")
+    @PostMapping("/admin/category/{categoryId}/products")
     public ResponseEntity<ProductDTO> createProduct(
         @PathVariable Long categoryId,
         @Valid @RequestBody ProductDTO productDTO
