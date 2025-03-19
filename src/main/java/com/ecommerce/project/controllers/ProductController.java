@@ -9,6 +9,9 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 
 @RestController
@@ -27,6 +30,14 @@ public class ProductController {
     ) {
         ProductDTO createdProduct = productService.createProduct(categoryId, productDTO);
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
+    }
+    
+    @GetMapping("/public/products/{productId}")
+    public ResponseEntity<ProductDTO> getProductById(
+        @PathVariable Long productId
+    ) {
+        ProductDTO productDTO = productService.getProductById(productId);
+        return new ResponseEntity<>(productDTO, HttpStatus.OK);
     }
     
     @GetMapping("/public/products")
@@ -65,7 +76,6 @@ public class ProductController {
         return new ResponseEntity<>(productResponse, HttpStatus.OK);
     }
     
-    
     @PutMapping("/admin/products/{productId}")
     public ResponseEntity<ProductDTO> updateProduct(
         @PathVariable Long productId,
@@ -73,5 +83,14 @@ public class ProductController {
     ) {
         ProductDTO updatedProduct = productService.updateProduct(productId, productDTO);
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+    }
+    
+    @PutMapping("/product/{productId}/image")
+    public ResponseEntity<ProductDTO> updateProductImage(
+        @PathVariable Long productId,
+        @RequestParam(name = "image") MultipartFile image
+    ) throws IOException {
+        ProductDTO updatedProductDTO = productService.updateProductImage(productId, image);
+        return new ResponseEntity<>(updatedProductDTO, HttpStatus.OK);
     }
 }
