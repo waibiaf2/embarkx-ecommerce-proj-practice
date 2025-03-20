@@ -47,8 +47,8 @@ public class UserDetailsImpl implements UserDetails {
             .collect(Collectors.toList());
         
         return new UserDetailsImpl(
-            user.getUser_id(),
-            user.getUsername(),
+            user.getUserId(),
+            user.getUserName(),
             user.getEmail(),
             user.getPassword(),
             authorities
@@ -57,7 +57,7 @@ public class UserDetailsImpl implements UserDetails {
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return authorities;
     }
     
     @Override

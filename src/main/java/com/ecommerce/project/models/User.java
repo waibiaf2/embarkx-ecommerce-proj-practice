@@ -24,12 +24,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long user_id;
+    private Long userId;
     
     @NotBlank
     @Size(min = 20)
     @Column(name = "username")
-    private String username;
+    private String userName;
     
     @NotBlank
     @Email
@@ -38,6 +38,18 @@ public class User {
     private String email;
     
     private String password;
+    
+    public User(
+        Long userId,
+        String username,
+        String email,
+        String password
+    ) {
+        this.userId = userId;
+        this.userName = username;
+        this.email = email;
+        this.password = password;
+    }
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -55,15 +67,4 @@ public class User {
     )
     private Set<Product> products;
     
-    public User(
-        Long user_id,
-        String username,
-        String email,
-        String password
-    ) {
-        this.user_id = user_id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
 }
