@@ -19,7 +19,8 @@ import java.util.Set;
     uniqueConstraints = {
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email")
-    })
+    }
+)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,25 +28,23 @@ public class User {
     private Long userId;
     
     @NotBlank
-    @Size(min = 20)
+    @Size(min = 2, max = 20, message = "Username must be at least 20 characters long")
     @Column(name = "username")
     private String userName;
     
     @NotBlank
     @Email
-    @Size(min = 50)
+    @Size(min= 3, max = 50, message = "Email must be between 3 and 50 characters long")
     @Column(name = "email")
     private String email;
     
     private String password;
     
     public User(
-        Long userId,
         String username,
         String email,
         String password
     ) {
-        this.userId = userId;
         this.userName = username;
         this.email = email;
         this.password = password;
@@ -59,12 +58,12 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
     
-    @ToString.Exclude
+    /*@ToString.Exclude
     @OneToMany(
         mappedBy = "user",
         cascade = {CascadeType.PERSIST, CascadeType.MERGE},
         orphanRemoval = true
     )
-    private Set<Product> products;
+    private Set<Product> products;*/
     
 }
