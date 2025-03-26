@@ -13,14 +13,12 @@ import com.ecommerce.project.security.response.MessageResponse;
 import com.ecommerce.project.security.response.UserInfoResponse;
 import com.ecommerce.project.security.services.UserDetailsImpl;
 import com.ecommerce.project.security.services.UserDetailsServiceImpl;
-import io.jsonwebtoken.security.Password;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -33,12 +31,12 @@ import java.util.*;
 @Controller
 @RequestMapping(AppConstants.BASE_URL + "/auth")
 public class AuthController {
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private AuthenticationManager authenticationManager;
-    private UserDetailsServiceImpl userDetailsService;
-    private JwtUtils jwtUtils;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final AuthenticationManager authenticationManager;
+    private final UserDetailsServiceImpl userDetailsService;
+    private final JwtUtils jwtUtils;
+    private final PasswordEncoder passwordEncoder;
     
     public AuthController(
         UserRepository userRepository,
@@ -81,7 +79,8 @@ public class AuthController {
         String jwtToken = jwtUtils.generateTokenFromUserName(userDetails);
         
         List<String> roles = userDetails.getAuthorities().stream().map(
-            item -> item.getAuthority()).toList();
+            item -> item.getAuthority()
+        ).toList();
         
         UserInfoResponse response = new UserInfoResponse(
             userDetails.getId(),
@@ -110,7 +109,7 @@ public class AuthController {
             passwordEncoder.encode(signupRequest.getPassword())
         );
         
-        Set<String> strRoles = signupRequest.getRole();
+        Set<String> strRoles = signupRequest.getRoles();
         Set<Role> roles = new HashSet<>();
         
         if (strRoles == null) {

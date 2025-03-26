@@ -1,6 +1,5 @@
 package com.ecommerce.project.security.request;
 
-import com.ecommerce.project.models.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -24,5 +23,5 @@ public class SignupRequest {
     private String password;
     
     
-    private Set<String> role;
+    private Set<String> roles;
 }
